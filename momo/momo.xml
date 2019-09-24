@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>momo</name>
+    </assembly>
+    <members>
+        <member name="F:momo.Const.SecurityKey">
+            <summary>
+            这里为了演示，写死一个密钥。实际生产环境可以从配置文件读取,这个是用网上工具随便生成的一个密钥
+            </summary>
+        </member>
+        <member name="F:momo.Const.Domain">
+            <summary>
+            站点地址
+            </summary>
+        </member>
+        <member name="F:momo.Const.ValidAudience">
+            <summary>
+            受理人，之所以弄成可变的是为了用接口动态更改这个值以模拟强制Token失效
+            真实业务场景可以在数据库或者redis存一个和用户id相关的值，生成token和验证token的时候获取到持久化的值去校验
+            如果重新登陆，则刷新这个值
+            </summary>
+        </member>
+        <member name="M:momo.Controllers.v1.DefaultController.Get">
+            <summary>
+            获取样例数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:momo.Controllers.v1.DefaultController.Get2">
+            <summary>
+            获取样例数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:momo.Controllers.v1.SecretController">
+            <summary>
+            授权接口
+            </summary>
+        </member>
+        <member name="F:momo.Controllers.v1.SecretController._jwtApp">
+            <summary>
+            Jwt 服务
+            </summary>
+        </member>
+        <member name="F:momo.Controllers.v1.SecretController._logger">
+            <summary>
+            日志记录服务
+            </summary>
+        </member>
+        <member name="F:momo.Controllers.v1.SecretController._secretApp">
+            <summary>
+            用户服务
+            </summary>
+        </member>
+        <member name="P:momo.Controllers.v1.SecretController._configuration">
+            <summary>
+            配置信息
+            </summary>
+        </member>
+        <member name="M:momo.Controllers.v1.SecretController.#ctor(Microsoft.Extensions.Logging.ILogger{momo.Controllers.v1.SecretController},Microsoft.Extensions.Configuration.IConfiguration,momo.Application.Authorization.Jwt.IJwtAppService,momo.Application.Authorization.Secret.ISecretAppService)">
+            <summary>
+            Ctor
+            </summary>
+            <param name="logger"></param>
+            <param name="configuration"></param>
+            <param name="jwtApp"></param>
+            <param name="secretApp"></param>
+        </member>
+        <member name="M:momo.Controllers.v1.SecretController.CancelAccessToken">
+            <summary>
+            停用 Jwt 授权数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:momo.Controllers.v1.SecretController.LoginAsync(momo.Application.Authorization.Secret.Dto.SecretDto)">
+            <summary>
+            获取 Jwt 授权数据
+            </summary>
+            <param name="dto">授权用户信息</param>
+        </member>
+        <member name="M:momo.Controllers.v1.SecretController.RefreshAccessTokenAsync(momo.Application.Authorization.Secret.Dto.SecretDto)">
+            <summary>
+            刷新 Jwt 授权数据
+            </summary>
+            <param name="dto">刷新授权用户信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:momo.Controllers.v2.Default2Controller.Get">
+            <summary>
+            获取default2的数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:momo.Handles.PolicyHandler.Schemes">
+            <summary>
+            授权方式（cookie, bearer, oauth, openid）
+            </summary>
+        </member>
+        <member name="F:momo.Handles.PolicyHandler._jwtApp">
+            <summary>
+            jwt 服务
+            </summary>
+        </member>
+        <member name="M:momo.Handles.PolicyHandler.#ctor(Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider,momo.Application.Authorization.Jwt.IJwtAppService)">
+            <summary>
+            ctor
+            </summary>
+            <param name="schemes"></param>
+            <param name="jwtApp"></param>
+        </member>
+        <member name="M:momo.Handles.PolicyHandler.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext,momo.Handles.PolicyRequirement)">
+            <summary>
+            //授权处理 ,async 这个标识可以解决很多问题,.............探究一下
+            </summary>
+            <param name="context"></param>
+            <param name="requirement"></param>
+            <returns></returns>
+        </member>
+        <member name="T:momo.Handles.PolicyHandler.Menu">
+            <summary>
+            测试菜单类
+            </summary>
+        </member>
+        <member name="T:momo.Handles.PolicyRequirement">
+            <summary>
+            自定义授权策略 
+            </summary>
+        </member>
+        <member name="M:momo.Middleware.DapperMiddleware.#ctor(momo.Infrastructure.Dapper.IDataRepository,Microsoft.Extensions.Logging.ILogger{momo.Middleware.DapperMiddleware},Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            ctor
+            </summary>
+            <param name="repository"></param>
+            <param name="logger"></param>
+            <param name="request"></param>
+        </member>
+        <member name="M:momo.Middleware.DapperMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            注入中间件到HttpContext中
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:momo.Middleware.DapperMiddlewareExtensions.UseDapper(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            调用中间件
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:momo.Middleware.PerformanceLogExtension.UsePerformanceLog(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            调用中间件
+            </summary>
+            <param name="applicationBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:momo.Middleware.PerformanceLogMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            注入中间件到HttpContext中
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Authorization\Secret\Repository\SecretApp.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Authorization\Secret\Repository\SecretApp.xml" />
+    <EmbeddedResource Include="SystemManager\UseManager\Repository\UserApp.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="momo.Entity">
+      <HintPath>..\momo.Entity\bin\Debug\netcoreapp2.2\momo.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="momo.Infrastructure">
+      <HintPath>..\momo.Infrastructure\bin\Debug\netcoreapp2.2\momo.Infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
